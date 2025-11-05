@@ -8,7 +8,7 @@ def get_credits() -> str:
     return f"""
 /* =========================================
  * WebStyle Framework
- * https://github.com/webstyle-framework
+ * https://github.com/0kibob/webstyle-framework
  * Built on: {current_date}
  * ========================================= */
 """
@@ -44,6 +44,7 @@ def build_style_from_folder(input_path: str, output_path: str) -> None:
     # Write the sorted files to the final file.
     with open(os.path.join(output_path, "webstyle_framework.css"), "w", encoding="utf-8") as outfile:
         for file in sort_files_path:
+            outfile.write(f"/* ========== {os.path.basename(file)} ========== */\n")
             with open(file, "r", encoding="utf-8") as f:
                 outfile.write(f.read() + "\n\n")
         
