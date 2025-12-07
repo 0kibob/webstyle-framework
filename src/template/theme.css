@@ -1,0 +1,17 @@
+:root
+{
+    --fs-xs: clamp(0.64rem, 0.05vi + 0.63rem, 0.67rem);
+    --fs-sm: clamp(0.8rem, 0.17vi + 0.76rem, 0.89rem);
+    --fs-md: clamp(1rem, 0.34vi + 0.91rem, 1.19rem);
+    --fs-lg: clamp(1.25rem, 0.61vi + 1.1rem, 1.58rem);
+    --fs-xl: clamp(1.56rem, 1vi + 1.31rem, 2.11rem);
+    --fs-xxl: clamp(1.95rem, 1.56vi + 1.56rem, 2.81rem);
+    --fs-xxxl: clamp(2.44rem, 2.38vi + 1.85rem, 3.75rem);
+
+    --space-xs: clamp(0.21rem, 0.0045vi + 0.19rem, 0.25rem);
+    --space-sm: clamp(0.42rem, 0.0089vi + 0.39rem, 0.5rem);
+    --space-md: clamp(0.84rem, 0.0179vi + 0.77rem, 1rem);
+    --space-lg: clamp(1.26rem, 0.0269vi + 1.16rem, 1.5rem);
+    --space-xl: clamp(1.68rem, 0.0359vi + 1.54rem, 2rem);
+    --space-xxl: clamp(2.53rem, 0.0538vi + 2.31rem, 3rem);
+}

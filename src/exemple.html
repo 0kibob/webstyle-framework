@@ -1,29 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../build/webstyle_framework.css">
+    <title>Exemple Mockup (Code IDE)</title>
+    <link rel="stylesheet" href="../build/pixipili.webstyle_framework.css">
 </head>
 <body>
-    <div class="container">
-        <header class="nav mt-3 mb-3 justify-between">
-            <a class="h2 text-primary">Brand</a>
-            <nav class="d-flex gap-sm">
-                <a class="btn btn-ghost">Docs</a>
-                <a class="btn btn-primary">Get Started</a>
-            </nav>
-        </header>
-
-
-        <section class="grid">
-            <div class="col-6 card">
-                <h3 class="card-title">Component</h3>
-                <p class="card-body">Description here.</p>
+    <div class="menu-bar">
+        <button>File</button>
+        <button>Edit</button>
+        <button>Select</button>
+        <button>View</button>
+        <button>Terminal</button>
+        <button>Settings</button>
+        <button>Help</button>
+    </div>
+    <div class="main">
+        <div class="editor">
+            <div class="texteditor">
+                <div class="tabs">
+                    <button>home</button>
+                    <button>main.py</button>
+                    <button>test.html</button>
+                </div>
+                <div class="textarea">
+                    <textarea name="" id=""></textarea>
+                </div>
             </div>
-            <div class="col-6 card">
-                <h3 class="card-title">Another</h3>
-                <p class="card-body">More description.</p>
+            <div class="sidebar">
+                <div class="tabs">
+                    <button>📁</button>
+                    <button>🛒</button>
+                    <button>🛠️</button>
+                    <button>🔒</button>
+                </div>
+                <div>
+                    <p>EXPLORER</p>
+                </div>
             </div>
-        </section>
+    </div>
+        <div class="terminal">
+            <div class="tabs">
+                <button>TERMINAL</button>
+                <button>DEBUG CONSOLE</button>
+            </div>
+            <div class="textarea">
+                <textarea name="" id=""></textarea>
+            </div>
+        </div>
     </div>
 </body>
 </html>

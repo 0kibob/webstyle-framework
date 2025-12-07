@@ -1,5 +1,3 @@
-/* help from https://www.fluid-type-scale.com/ */
-
 :root
 {
     --fs-xs: clamp(0.64rem, 0.05vi + 0.63rem, 0.67rem);

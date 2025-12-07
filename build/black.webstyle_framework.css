@@ -1,5 +1,11 @@
-/* ========== theme.css ========== */
-/* help from https://www.fluid-type-scale.com/ */
+/*
+ ==============================================
+ | Black, by Okibob
+ | Build using WebStyle Framework
+ | Copyright (c) 2025 LAURET Timéo
+ | https://github.com/0kibob/webstyle-framework
+ ==============================================
+*/
 
 :root
 {
@@ -19,7 +25,6 @@
     --space-xxl: clamp(2.53rem, 0.0538vi + 2.31rem, 3rem);
 }
 
-/* ========== base.css ========== */
 *
 {
     margin: 0;
@@ -27,12 +32,3 @@
     box-sizing: border-box;
 }
 
-/* ========== utilities.css ========== */
-
-
-
-/* =========================================
- * WebStyle Framework
- * https://github.com/0kibob/webstyle-framework
- * Built on: 2025-11-05
- * ========================================= */
