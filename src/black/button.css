@@ -1,0 +1,26 @@
+button
+{
+    all: unset;
+}
+
+button.tabs
+{
+    background-color: red;
+    padding: 4px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+button.active
+{
+    background-color: red;
+}
+
+button.disable
+{
+    background-color: red;
+}
+
+button.unfocus
+{
+    background-color: red;
+}

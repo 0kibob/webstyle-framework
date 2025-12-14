@@ -1,2 +1,3 @@
 name: "PixiPili"
 author: "Okibob"
+priority_order: ["theme.css", "base.css"]

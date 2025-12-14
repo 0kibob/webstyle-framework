@@ -1,17 +1,61 @@
 :root
 {
-    --fs-xs: clamp(0.64rem, 0.05vi + 0.63rem, 0.67rem);
-    --fs-sm: clamp(0.8rem, 0.17vi + 0.76rem, 0.89rem);
-    --fs-md: clamp(1rem, 0.34vi + 0.91rem, 1.19rem);
-    --fs-lg: clamp(1.25rem, 0.61vi + 1.1rem, 1.58rem);
-    --fs-xl: clamp(1.56rem, 1vi + 1.31rem, 2.11rem);
-    --fs-xxl: clamp(1.95rem, 1.56vi + 1.56rem, 2.81rem);
-    --fs-xxxl: clamp(2.44rem, 2.38vi + 1.85rem, 3.75rem);
+    --spacing: .25rem;
+    --spacing-xs: calc(var(--spacing) - 4px);
+    --spacing-sm: calc(var(--spacing) - 2px);
+    --spacing-md: var(--spacing);
+    --spacing-lg: calc(var(--spacing) + 2px);
+    --spacing-xl: calc(var(--spacing) + 4px);
 
-    --space-xs: clamp(0.21rem, 0.0045vi + 0.19rem, 0.25rem);
-    --space-sm: clamp(0.42rem, 0.0089vi + 0.39rem, 0.5rem);
-    --space-md: clamp(0.84rem, 0.0179vi + 0.77rem, 1rem);
-    --space-lg: clamp(1.26rem, 0.0269vi + 1.16rem, 1.5rem);
-    --space-xl: clamp(1.68rem, 0.0359vi + 1.54rem, 2rem);
-    --space-xxl: clamp(2.53rem, 0.0538vi + 2.31rem, 3rem);
+    --font: 16px;
+    --font-xs: .75rem;
+    --font-sm: .875rem;
+    --font-md: 1rem;
+    --font-lg: 1.125rem;
+    --font-xl: 1.5rem;
+    --font-2xl: 2rem;
+    --font-3xl: 3rem;
+    --font-4xl: 4rem;
+
+    --container-xs: 20rem;
+    --container-sm: 24rem;
+    --container-md: 28rem;
+    --container-lg: 32rem;
+    --container-xl: 36rem;
+    --container-2xl: 42rem;
+    --container-3xl: 48rem;
+    --container-4xl: 56rem;
+
+    --radius: .5rem;
+    --radius-xs: calc(var(--radius) - 4px);
+    --radius-sm: calc(var(--radius) - 2px);
+    --radius-md: var(--radius);
+    --radius-lg: calc(var(--radius) + 2px);
+    --radius-xl: calc(var(--radius) + 4px);
+
+    --background: oklch(14.5% 0 0);
+    --foreground: oklch(98.5% 0 0);
+    --primary: oklch(92.2% 0 0);
+    --secondary: oklch(26.9% 0 0);
+    --muted: oklch(26.9% 0 0);
+    --accent: oklch(37.1% 0 0);
+    /* --primary-foreground: oklch(20.5% 0 0); */
+    /* --secondary-foreground: oklch(98.5% 0 0); */
+    /* --muted-foreground: oklch(70.8% 0 0); */
+    /* --accent-foreground: oklch(98.5% 0 0); */
+    --border: oklch(100% 0 0 / .1);
 }
+
+.bg-background { background-color: var(--background); }
+.bg-foreground { background-color: var(--foreground); }
+.bg-primary { background-color: var(--primary); }
+.bg-secondary { background-color: var(--secondary); }
+.bg-muted { background-color: var(--muted); }
+.bg-accent { background-color: var(--accent); }
+
+.text-background { color: var(--background); }
+.text-foreground { color: var(--foreground); }
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-muted { color: var(--muted); }
+.text-accent { color: var(--accent); }

@@ -3,12 +3,12 @@ import sys
 
 def credits_for(name: str, author: str) -> str:
     return f"""/*
- ==============================================
- | {name}, by {author}
- | Build using WebStyle Framework
- | Copyright (c) 2025 LAURET Timéo
- | https://github.com/0kibob/webstyle-framework
- ==============================================
+ ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ ┃ {name}, by {author}
+ ┃ Build using WebStyle Framework
+ ┃ Copyright (c) 2025 LAURET Timéo
+ ┃ https://github.com/0kibob/webstyle-framework
+ ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 */
 """
 
@@ -52,7 +52,7 @@ def build_folders(folder_dict: dict, output_path: str):
 
         find_files_path: list = []
         sort_files_path: list = []
-        priority_order = ["theme.css", "base.css"]
+        priority_order = folder_info["priority_order"]
 
         for root, _subfolders, files in os.walk(folder_path):
             for f in files:

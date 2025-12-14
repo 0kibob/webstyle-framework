@@ -1,0 +1,24 @@
+.flex
+{
+    display: flex;
+}
+
+.flex-col
+{
+    flex-direction: column;
+}
+
+.flex-row
+{
+    flex-direction: row;
+}
+
+.sticky
+{
+    position: sticky;
+}
+
+.top-0
+{
+    top: 0;
+}
