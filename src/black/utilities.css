@@ -20,15 +20,3 @@
 .h-auto { height: auto; }
 .h-full { height: 100%; }
 .h-fit { height: fit-content; }
-
-
-
-/* .top-0
-{
-    top: 0;
-} */
-
-/* Realy important, need to add the color generator based on the color object in config */
-/* need to implement for non static generator for top bottom and other or maybe not for them !*/
-/* need to implement for non multidirectional in the generator like px py mx my or even in each dirrection top bottom left right */
-/* also need to add like xs sm lg and xl for more precision */

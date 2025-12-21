@@ -1,5 +1,5 @@
 /*
- | Black, by Okibob
+ | black, by Okibob
  | Build using WebStyle Framework
  | Copyright (c) 2025 LAURET Timéo
  | https://github.com/0kibob/webstyle-framework
@@ -27,60 +27,6 @@
     --container-4xl: 56rem;
     --breakpoint: 90rem;
 }
-
-.bg-none { background-color: transparent; }
-.bg-background { background-color: var(--background); }
-.bg-foreground { background-color: var(--foreground); }
-.bg-primary { background-color: var(--primary); }
-.bg-secondary { background-color: var(--secondary); }
-.bg-muted { background-color: var(--muted); }
-.bg-accent { background-color: var(--accent); }
-.bg-border { background-color: var(--border); }
-
-.text-none { color: transparent; }
-.text-background { color: var(--background); }
-.text-foreground { color: var(--foreground); }
-.text-primary { color: var(--primary); }
-.text-secondary { color: var(--secondary); }
-.text-muted { color: var(--muted); }
-.text-accent { color: var(--accent); }
-.text-border { color: var(--border); }
-
-.border-none { border-color: transparent; }
-.border-background { border-color: var(--background); }
-.border-foreground { border-color: var(--foreground); }
-.border-primary { border-color: var(--primary); }
-.border-secondary { border-color: var(--secondary); }
-.border-muted { border-color: var(--muted); }
-.border-accent { border-color: var(--accent); }
-.border-border { border-color: var(--border); }
-
-.bg-none:hover { background-color: transparent; }
-.bg-background:hover { background-color: var(--background); }
-.bg-foreground:hover { background-color: var(--foreground); }
-.bg-primary:hover { background-color: var(--primary); }
-.bg-secondary:hover { background-color: var(--secondary); }
-.bg-muted:hover { background-color: var(--muted); }
-.bg-accent:hover { background-color: var(--accent); }
-.bg-border:hover { background-color: var(--border); }
-
-.text-none:hover { color: transparent; }
-.text-background:hover { color: var(--background); }
-.text-foreground:hover { color: var(--foreground); }
-.text-primary:hover { color: var(--primary); }
-.text-secondary:hover { color: var(--secondary); }
-.text-muted:hover { color: var(--muted); }
-.text-accent:hover { color: var(--accent); }
-.text-border:hover { color: var(--border); }
-
-.border-none:hover { border-color: transparent; }
-.border-background:hover { border-color: var(--background); }
-.border-foreground:hover { border-color: var(--foreground); }
-.border-primary:hover { border-color: var(--primary); }
-.border-secondary:hover { border-color: var(--secondary); }
-.border-muted:hover { border-color: var(--muted); }
-.border-accent:hover { border-color: var(--accent); }
-.border-border:hover { border-color: var(--border); }
 
 .p-auto { padding: auto; }
 .p-xs { padding: calc(var(--spacing) * 0.25); }
@@ -294,6 +240,11 @@
 .m-right-7 { margin-right: calc(var(--spacing) * 7); }
 .m-right-8 { margin-right: calc(var(--spacing) * 8); }
 
+.gap-xs { gap: calc(var(--spacing) * 0.25); }
+.gap-sm { gap: calc(var(--spacing) * 0.75); }
+.gap-md { gap: calc(var(--spacing) * 1); }
+.gap-lg { gap: calc(var(--spacing) * 1.25); }
+.gap-xl { gap: calc(var(--spacing) * 1.5); }
 .gap-0 { gap: calc(var(--spacing) * 0); }
 .gap-1 { gap: calc(var(--spacing) * 1); }
 .gap-2 { gap: calc(var(--spacing) * 2); }
@@ -351,6 +302,8 @@
 .right-2 { right: calc(var(--spacing) * 2); }
 .right-3 { right: calc(var(--spacing) * 3); }
 .right-4 { right: calc(var(--spacing) * 4); }
+
+/* ERROR | Generator "background_color" references undefined for "step" */
 
 *
 {

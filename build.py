@@ -8,14 +8,11 @@ class Project:
     def __init__(self, path: str, config: dict):
         self.path: str = path
         self.config: dict = config
-        self.name: str = config["name"].lower()
-        self.author: str = config["author"]
 
 
 def read_json(path: str) -> dict:
     # simply read the json file to a python dict
     with open(path, "r", encoding="utf-8") as f: return json.load(f)
-
 
 def find_project_at(path: str) -> list[Project]:
 
@@ -44,15 +41,7 @@ def find_project_at(path: str) -> list[Project]:
 
 
 
-
-
-
-
-
-
-
-
-def make_project_credit(name: str, author: str) -> str:
+def create_project_credit(name: str, author: str) -> str:
     return f"""/*
  | {name}, by {author}
  | Build using WebStyle Framework
@@ -61,18 +50,17 @@ def make_project_credit(name: str, author: str) -> str:
 */
 """
 
-def make_project_root(roots: dict[str, str]) -> str:
+def create_project_root(roots: dict[str, str]) -> str:
     lines = [":root\n{"]
     lines.extend(f"    {var}: {value};" for var, value in roots.items())
     lines.append("}")
     return "\n".join(lines)
 
-
-def get_project_subfiles_path(path: str, order: list | None) -> list[str]:
+def get_project_subfiles(path: str, order: list | None) -> list[str]:
     
     valid_file: list[str] = []
     ordered_file: list[str] = []
-    # Look over all the file in the project folder
+
     for root, _subfolders, files in os.walk(path):
         valid_file = [os.path.join(root, f) for f in files if f.endswith(".css")]
 
@@ -81,32 +69,35 @@ def get_project_subfiles_path(path: str, order: list | None) -> list[str]:
     ordered_file = sorted(valid_file, key=lambda f: (order_map.get(os.path.basename(f), float("inf"))))
     return ordered_file
 
-def get_project_subfiles_root(subfiles: list[str]) -> dict[str, str]:
+def get_subfiles_root(subfiles: list[str]) -> dict[str, str]:
 
-    subfile_root: dict[str, str] = {}
+    root: dict[str, str] = {}
 
     for subfile in subfiles:
         with open(subfile, "r", encoding="utf-8") as f: content = f.read()
         content = re.sub(r"/\*.*?\*/", "", content, flags=re.DOTALL)
-        subfile_root.update({
+        root.update({
             key.strip(): value.strip()
             for root in re.findall(r":root\s*{([^}]*)}", content, re.DOTALL)
             for key, value in re.findall(r"([^:;]+)\s*:\s*([^;]+)", root)
         })
 
-    return subfile_root
+    return root
 
-def get_project_subfiles_contents(subfiles: list[str]) -> list[str]:
-
-    subfiles_content: list[str] = []
+def get_subfiles_content(subfiles: list[str]) -> str:
+    
+    f_content: list[str] = []
 
     for subfile in subfiles:
         with open(subfile, "r", encoding="utf-8") as f: content = f.read()
         content = re.sub(r":root\s*{[^}]*}", "", content, flags=re.DOTALL)
-        if content: subfiles_content.append(content.strip())
-        subfiles_content.append("")
+        if content:
+            f_content.append(content.strip())
+            f_content.append("")
 
-    return subfiles_content
+    return "\n".join(f_content)
+
+
 
 
 def get_project_generator(generator_name: str, generator: dict, project_root: dict) -> list[str]:
@@ -163,42 +154,130 @@ def get_project_generator(generator_name: str, generator: dict, project_root: di
     return generator_content
 
 
-def build_project(project: Project, out_path: str):
 
-    print(f'INFO  | Building project {project.name}')
+def base_generator(generator: dict, project_root: dict, project_settings: dict) -> list[str]:
 
-    config_roots: dict = project.config.get("roots")
-    config_generators: dict = project.config.get("generators")
-    config_colors: dict = project.config.get("colors")
-    config_order: list = project.config.get("files_priority_order")
+    generated_css: list[str] = []
+
+    generator_prefix: str = generator.get("prefix")
+    generator_val_key: str = generator.get("val-key")
+    generator_css_key: str = generator.get("css-key")
+    generator_as_auto: bool = generator.get("as-auto")
+    generator_as_scale: bool = generator.get("as-scale")
+    generator_varient: list[dict] = generator.get("variants")
+    generator_step: int = generator.get("step")
+    generator_scales: dict = generator.get("scales")
+
+    step = generator_step if generator_step else project_settings.get("step")
+
+    if not generator_prefix: return generated_css
+    if not generator_val_key: return generated_css
+    if not generator_css_key: return generated_css
+    if not step: return generated_css
+
+    if generator_as_auto: generated_css.append( f".{generator_prefix}-auto {{ {generator_css_key}: auto; }}" )
+    value = f"var({generator_val_key})" if generator_val_key.startswith('--') else generator_val_key
+
+    if generator_as_scale:
+        scales = generator_scales if generator_scales else project_settings.get("scales")
+        for scale_name, scale_value in scales.items():
+            generated_css.append(f".{generator_prefix}-{scale_name} {{ {generator_css_key}: calc({value} * {scale_value}); }}")
+
+    for i in range(step + 1):
+        generated_css.append(f".{generator_prefix}-{i} {{ {generator_css_key}: calc({value} * {i}); }}")
     
-    project_root: dict[str, str] = {}
-    project_subfiles: list[str] = []
-    project_generator: list[str] = []
-    project_content: list[str] = []
+    if not generator_varient: return generated_css
 
-    project_subfiles = get_project_subfiles_path(project.path, config_order)
+    for direction in generator_varient:
+        prefix = direction.get("prefix")
+        css_subkey = direction.get("css-subkey")
 
-    # Create the project :root css
-    if config_roots: project_root.update(config_roots)
-    if config_colors: project_root.update(config_colors)
-    project_root.update(get_project_subfiles_root(project_subfiles))
+        if generator_as_auto: generated_css.append( f".{prefix}-auto {{ {generator_css_key}-{css_subkey}: auto; }}" )
 
-    project_content.extend(get_project_subfiles_contents(project_subfiles))
+        if generator_as_scale:
+            scales = generator_scales if generator_scales else project_settings.get("scales")
+            for scale_name, scale_value in scales.items():
+                generated_css.append(f".{prefix}-{scale_name} {{ {generator_css_key}-{css_subkey}: calc({value} * {scale_value}); }}")
 
-    for i, generator in config_generators.items():
-        generator_content: list[str] = get_project_generator(i, generator, project_root)
-        if not generator_content: continue
-        project_generator.append("")
-        project_generator.extend(generator_content)
+        for i in range(step + 1):
+            generated_css.append(f".{prefix}-{i} {{ {generator_css_key}-{css_subkey}: calc({value} * {i}); }}")
 
-    with open(os.path.join(out_path, f"{project.name}.webstyle_framework.css"), "w", encoding="utf-8") as outfile:
-        outfile.write(make_project_credit(project.name, project.author) + "\n")
-        outfile.write(make_project_root(project_root) + "\n")
-        outfile.write("\n".join(project_generator) + "\n")
-        outfile.write("\n".join(project_content))
+    return generated_css
+
+def color_generator(generator: dict, colors: dict) -> list[str]:
     
-    print(f'INFO  | Success building project {project.name}')
+    generated_css: list[str] = []
+
+    generator_prefix: str = generator.get("prefix")
+    generator_css_key: str = generator.get("css-key")
+    generator_is_hover: bool = generator.get("is-hover")
+
+    if not generator_prefix: return generated_css
+    if not generator_css_key: return generated_css
+
+    is_hover: str = ":hover" if generator_is_hover else ""
+
+    generated_css.append(f".{generator_prefix}-none{is_hover} {{ {generator_css_key}: transparent; }}")
+    for color_key in colors:
+        color = color_key.lstrip("-")
+        generated_css.append(f".{generator_prefix}-{color}{is_hover} {{ {generator_css_key}: var({color_key}); }}")
+
+    return generated_css
+
+
+def build_project(project: Project, out_path: str) -> None:
+
+    project_name: str = project.config.get("name")          # Should give an error if missing
+    project_author: str = project.config.get("author")      # Should give an error if missing
+
+    if not project_name: return
+    if not project_author: return
+
+    project_settings: dict = project.config.get("setting")
+    project_roots: dict = project.config.get("roots")
+    project_colors: dict = project.config.get("colors")
+    project_colors_generators: list[dict] = project.config.get("colors-generators")
+    project_generators: list[dict] = project.config.get("generators")
+    project_priority_order: dict = project.config.get("priority-order")
+    project_subfiles: list[str] = get_project_subfiles(project.path, project_priority_order)
+
+    generated_roots: str = ""
+    generated_colors: str = ""
+    generated_generators: str = ""
+    generated_content: str = ""
+    
+    temporary_root: dict[str, str] = {}
+    temporary_root.update(project_roots)
+    temporary_root.update(project_colors)
+    temporary_root.update(get_subfiles_root(project_subfiles))
+    generated_roots = create_project_root(temporary_root)
+    
+    generated_content = get_subfiles_content(project_subfiles)
+
+    if project_colors_generators and project_colors:
+        temporary_colors: list[str] = []
+        for generator in project_colors_generators:
+            css = color_generator(generator, project_colors)
+            if css: temporary_colors.extend(css)
+            if css: temporary_colors.append("")
+
+        generated_colors = "\n".join(temporary_colors)
+
+    if project_generators:
+        temporary_generators: list[str] = []
+        for generator in project_generators:
+            css = base_generator(generator, project_roots, project_settings)
+            if css: temporary_generators.extend(css)
+            if css: temporary_generators.append("")
+
+        generated_generators = "\n".join(temporary_generators)
+
+    with open(os.path.join(out_path, f"{project_name.lower()}.webstyle_framework.css"), "w", encoding="utf-8") as outfile:
+        outfile.write(create_project_credit(project_name, project_author) + "\n")
+        outfile.write(generated_roots + "\n\n")
+        outfile.write(generated_colors + "\n")
+        outfile.write(generated_generators + "\n")
+        outfile.write(generated_content)
 
 
 def build_projects(projects: list[Project], out_path: str):

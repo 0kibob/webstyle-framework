@@ -1,6 +1,11 @@
 {
     "name": "Black",
     "author": "Okibob",
+
+    "setting": {
+        "step": 8,
+        "scales": { "xs": 0.25, "sm": 0.75, "md": 1, "lg": 1.25, "xl": 1.5 }
+    },
     
     "roots": {
         "--spacing": "0.5rem",
@@ -19,32 +24,25 @@
     },
     
     "colors-generators": [
-        {"prefix": "bg", "val-key": "colors", "css-key": "background-color"},
-        {"prefix": "text", "val-key": "colors", "css-key": "color"},
-        {"prefix": "border", "val-key": "colors", "css-key": "border-color"},
+        {"prefix": "bg", "css-key": "background-color"},
+        {"prefix": "text", "css-key": "color"},
+        {"prefix": "border", "css-key": "border-color"},
         
-        {"prefix": "border", "val-key": "colors", "css-key": "background-color", "hover": true},
-        {"prefix": "border", "val-key": "colors", "css-key": "color", "hover": true},
-        {"prefix": "border", "val-key": "colors", "css-key": "border-color", "hover": true}
+        {"prefix": "bg", "css-key": "background-color", "is-hover": true},
+        {"prefix": "text", "css-key": "color", "is-hover": true},
+        {"prefix": "border", "css-key": "border-color", "is-hover": true}
     ],
 
-
-    
-    "generators": {
-        "padding": {
+    "generators": [
+        {
             "prefix": "p",
             "val-key": "--spacing",
             "css-key": "padding",
-            "step": 8,
-            "auto": true,
-            "scales": {
-                "xs": 0.25,
-                "sm": 0.75,
-                "md": 1,
-                "lg": 1.25,
-                "xl": 1.5
-            },
-            "directions": [
+            
+            "as-auto": true,
+            "as-scale": true,
+
+            "variants": [
                 {"prefix": "py", "css-subkey": "block"},
                 {"prefix": "px", "css-subkey": "inline"},
                 {"prefix": "p-top", "css-subkey": "top"},
@@ -54,20 +52,15 @@
             ]
         },
 
-        "margin": {
+        {
             "prefix": "m",
             "val-key": "--spacing",
             "css-key": "margin",
-            "step": 8,
-            "auto": true,
-            "scales": {
-                "xs": 0.25,
-                "sm": 0.75,
-                "md": 1,
-                "lg": 1.25,
-                "xl": 1.5
-            },
-            "directions": [
+            
+            "as-auto": true,
+            "as-scale": true,
+
+            "variants": [
                 {"prefix": "my", "css-subkey": "block"},
                 {"prefix": "mx", "css-subkey": "inline"},
                 {"prefix": "m-top", "css-subkey": "top"},
@@ -77,71 +70,56 @@
             ]
         },
 
-        "gap": {
+        {
             "prefix": "gap",
             "val-key": "--spacing",
-            "css-key": "gap",
-            "step": 8,
-            "scales": {
-                "xs": 0.25,
-                "sm": 0.75,
-                "md": 1,
-                "lg": 1.25,
-                "xl": 1.5
-            }
+            "css-key": "gap"
         },
 
-        "font_size": {
+        {
             "prefix": "size",
             "val-key": "--font-size",
-            "css-key": "font-size",
-            "step": 8
+            "css-key": "font-size"
         },
 
-        "radius": {
+        {
             "prefix": "r",
             "val-key": "--radius",
-            "css-key": "border-radius",
-            "step": 8
+            "css-key": "border-radius"
         },
 
-        "top": {
+        {
             "prefix": "top",
             "val-key": "--spacing",
             "css-key": "top",
             "step": 4,
-            "auto": true
+            "as-auto": true
         },
-        "bottom": {
+        {
             "prefix": "bottom",
             "val-key": "--spacing",
             "css-key": "bottom",
             "step": 4,
-            "auto": true
+            "as-auto": true
         },
-        "left": {
+        {
             "prefix": "left",
             "val-key": "--spacing",
             "css-key": "left",
             "step": 4,
-            "auto": true
+            "as-auto": true
         },
-        "right": {
+        {
             "prefix": "right",
             "val-key": "--spacing",
             "css-key": "right",
             "step": 4,
-            "auto": true
-        },
-
-        "background_color": {
-            "prefix": "bg",
-            "val-key": "colors",
-            "css-key": "background-color"
+            "as-auto": true
         }
-    },
+
+    ],
     
-    "files_priority_order": [
+    "priority-order": [
         "theme.css",
         "base.css",
         "utilities.css"
