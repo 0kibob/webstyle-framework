@@ -1,14 +1,15 @@
 /*
- ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- ┃ Template, by Okibob
- ┃ Build using WebStyle Framework
- ┃ Copyright (c) 2025 LAURET Timéo
- ┃ https://github.com/0kibob/webstyle-framework
- ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ | template, by Author
+ | Build using WebStyle Framework
+ | Copyright (c) 2025 LAURET Timéo
+ | https://github.com/0kibob/webstyle-framework
 */
 
 :root
 {
+    --some-value: 1rem;
+    --background: oklch(14.5% 0 0);
+    --foreground: oklch(98.5% 0 0);
     --fs-xs: clamp(0.64rem, 0.05vi + 0.63rem, 0.67rem);
     --fs-sm: clamp(0.8rem, 0.17vi + 0.76rem, 0.89rem);
     --fs-md: clamp(1rem, 0.34vi + 0.91rem, 1.19rem);
@@ -16,7 +17,6 @@
     --fs-xl: clamp(1.56rem, 1vi + 1.31rem, 2.11rem);
     --fs-xxl: clamp(1.95rem, 1.56vi + 1.56rem, 2.81rem);
     --fs-xxxl: clamp(2.44rem, 2.38vi + 1.85rem, 3.75rem);
-
     --space-xs: clamp(0.21rem, 0.0045vi + 0.19rem, 0.25rem);
     --space-sm: clamp(0.42rem, 0.0089vi + 0.39rem, 0.5rem);
     --space-md: clamp(0.84rem, 0.0179vi + 0.77rem, 1rem);
@@ -25,10 +25,30 @@
     --space-xxl: clamp(2.53rem, 0.0538vi + 2.31rem, 3rem);
 }
 
+.p-auto { padding: auto; }
+.p-0 { padding: calc(var(--some-value) * 0); }
+.p-1 { padding: calc(var(--some-value) * 1); }
+.p-2 { padding: calc(var(--some-value) * 2); }
+.p-3 { padding: calc(var(--some-value) * 3); }
+.p-4 { padding: calc(var(--some-value) * 4); }
+.p-5 { padding: calc(var(--some-value) * 5); }
+.p-6 { padding: calc(var(--some-value) * 6); }
+.p-7 { padding: calc(var(--some-value) * 7); }
+.p-8 { padding: calc(var(--some-value) * 8); }
+
+.g-0 { gap: calc(16px * 0); }
+.g-1 { gap: calc(16px * 1); }
+.g-2 { gap: calc(16px * 2); }
+.g-3 { gap: calc(16px * 3); }
+.g-4 { gap: calc(16px * 4); }
+.g-5 { gap: calc(16px * 5); }
+.g-6 { gap: calc(16px * 6); }
+.g-7 { gap: calc(16px * 7); }
+.g-8 { gap: calc(16px * 8); }
+
 *
 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-

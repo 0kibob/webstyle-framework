@@ -1,24 +1,34 @@
-.flex
-{
-    display: flex;
-}
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.justify-sb { justify-content: space-between; }
+.justify-ar { justify-content: space-around; }
+.justify-ev { justify-content: space-evenly; }
+.items-center { align-items: center;}
+.text-center { text-align: center;}
 
-.flex-col
-{
-    flex-direction: column;
-}
+.sticky { position: sticky; }
+.static { position: static; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.relative { position: relative; }
 
-.flex-row
-{
-    flex-direction: row;
-}
+.w-auto { width: auto; }
+.w-full { width: 100%; }
+.w-fit { width: fit-content; }
 
-.sticky
-{
-    position: sticky;
-}
+.h-auto { height: auto; }
+.h-full { height: 100%; }
+.h-fit { height: fit-content; }
 
-.top-0
+
+
+/* .top-0
 {
     top: 0;
-}
+} */
+
+/* Realy important, need to add the color generator based on the color object in config */
+/* need to implement for non static generator for top bottom and other or maybe not for them !*/
+/* need to implement for non multidirectional in the generator like px py mx my or even in each dirrection top bottom left right */
+/* also need to add like xs sm lg and xl for more precision */

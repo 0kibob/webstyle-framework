@@ -1,0 +1,149 @@
+{
+    "name": "Black",
+    "author": "Okibob",
+    
+    "roots": {
+        "--spacing": "0.5rem",
+        "--font-size": "16px",
+        "--radius": "0.5rem"
+    },
+
+    "colors": {
+        "--background": "oklch(14.5% 0 0)",
+        "--foreground": "oklch(98.5% 0 0)",
+        "--primary": "oklch(92.2% 0 0)",
+        "--secondary": "oklch(26.9% 0 0)",
+        "--muted": "oklch(26.9% 0 0)",
+        "--accent": "oklch(37.1% 0 0)",
+        "--border": "oklch(100% 0 0 / .1)"
+    },
+    
+    "colors-generators": [
+        {"prefix": "bg", "val-key": "colors", "css-key": "background-color"},
+        {"prefix": "text", "val-key": "colors", "css-key": "color"},
+        {"prefix": "border", "val-key": "colors", "css-key": "border-color"},
+        
+        {"prefix": "border", "val-key": "colors", "css-key": "background-color", "hover": true},
+        {"prefix": "border", "val-key": "colors", "css-key": "color", "hover": true},
+        {"prefix": "border", "val-key": "colors", "css-key": "border-color", "hover": true}
+    ],
+
+
+    
+    "generators": {
+        "padding": {
+            "prefix": "p",
+            "val-key": "--spacing",
+            "css-key": "padding",
+            "step": 8,
+            "auto": true,
+            "scales": {
+                "xs": 0.25,
+                "sm": 0.75,
+                "md": 1,
+                "lg": 1.25,
+                "xl": 1.5
+            },
+            "directions": [
+                {"prefix": "py", "css-subkey": "block"},
+                {"prefix": "px", "css-subkey": "inline"},
+                {"prefix": "p-top", "css-subkey": "top"},
+                {"prefix": "p-bottom", "css-subkey": "bottom"},
+                {"prefix": "p-left", "css-subkey": "left"},
+                {"prefix": "p-right", "css-subkey": "right"}
+            ]
+        },
+
+        "margin": {
+            "prefix": "m",
+            "val-key": "--spacing",
+            "css-key": "margin",
+            "step": 8,
+            "auto": true,
+            "scales": {
+                "xs": 0.25,
+                "sm": 0.75,
+                "md": 1,
+                "lg": 1.25,
+                "xl": 1.5
+            },
+            "directions": [
+                {"prefix": "my", "css-subkey": "block"},
+                {"prefix": "mx", "css-subkey": "inline"},
+                {"prefix": "m-top", "css-subkey": "top"},
+                {"prefix": "m-bottom", "css-subkey": "bottom"},
+                {"prefix": "m-left", "css-subkey": "left"},
+                {"prefix": "m-right", "css-subkey": "right"}
+            ]
+        },
+
+        "gap": {
+            "prefix": "gap",
+            "val-key": "--spacing",
+            "css-key": "gap",
+            "step": 8,
+            "scales": {
+                "xs": 0.25,
+                "sm": 0.75,
+                "md": 1,
+                "lg": 1.25,
+                "xl": 1.5
+            }
+        },
+
+        "font_size": {
+            "prefix": "size",
+            "val-key": "--font-size",
+            "css-key": "font-size",
+            "step": 8
+        },
+
+        "radius": {
+            "prefix": "r",
+            "val-key": "--radius",
+            "css-key": "border-radius",
+            "step": 8
+        },
+
+        "top": {
+            "prefix": "top",
+            "val-key": "--spacing",
+            "css-key": "top",
+            "step": 4,
+            "auto": true
+        },
+        "bottom": {
+            "prefix": "bottom",
+            "val-key": "--spacing",
+            "css-key": "bottom",
+            "step": 4,
+            "auto": true
+        },
+        "left": {
+            "prefix": "left",
+            "val-key": "--spacing",
+            "css-key": "left",
+            "step": 4,
+            "auto": true
+        },
+        "right": {
+            "prefix": "right",
+            "val-key": "--spacing",
+            "css-key": "right",
+            "step": 4,
+            "auto": true
+        },
+
+        "background_color": {
+            "prefix": "bg",
+            "val-key": "colors",
+            "css-key": "background-color"
+        }
+    },
+    
+    "files_priority_order": [
+        "theme.css",
+        "base.css",
+        "utilities.css"
+    ]
+}

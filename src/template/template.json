@@ -1,0 +1,30 @@
+{
+    "name": "Template",
+    "author": "Author",
+    "roots": {
+        "--some-value": "1rem"
+    },
+    "colors": {
+        "--background": "oklch(14.5% 0 0)",
+        "--foreground": "oklch(98.5% 0 0)"
+    },
+    "generators": {
+        "padding": {
+            "prefix": "p",
+            "val-key": "--some-value",
+            "css-key": "padding",
+            "step": 8,
+            "auto": true
+        },
+        "gap": {
+            "prefix": "g",
+            "val-key": "16px",
+            "css-key": "gap",
+            "step": 8
+        }
+    },
+    "files_priority_order": [
+        "theme.css",
+        "base.css"
+    ]
+}
